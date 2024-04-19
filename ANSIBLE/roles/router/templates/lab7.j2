@@ -1,0 +1,17 @@
+hostname {{ item.hostname }}
+!
+interface {{ item.loopbackName }}
+ ip address {{ item.loopbackIP }}
+!
+{% for i in range(item.interfaceIP|length)  %}
+interface FastEthernet{{ item.interfaceName[i] }}
+ ip address {{ item.interfaceIP[i] }}
+ duplex full
+ no shutdown
+!
+{% endfor %}
+router ospf {{ item.processID }}
+{% for ip in item.ospfNetwork %}
+ network {{ ip }} area {{ item.ospfArea }}
+{% endfor %}
+!

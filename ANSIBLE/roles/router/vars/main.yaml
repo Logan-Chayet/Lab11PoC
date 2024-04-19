@@ -1,0 +1,49 @@
+lab7Config:
+- hostname: R1
+  loopbackName: loopback 1
+  loopbackIP: 10.0.0.1 255.255.255.255
+  interfaceName:
+  - 0/0
+  - 1/0
+  - 2/0
+  interfaceIP:
+  - 192.168.122.2 255.255.255.0
+  - 198.51.101.3 255.255.255.0
+  - 198.51.102.3 255.255.255.0
+  processID: '1'
+  ospfNetwork:
+  - 10.0.0.1 0.0.0.0
+  - 192.168.122.0 0.0.0.255
+  - 198.51.101.0 0.0.0.255
+  - 198.51.102.0 0.0.0.255
+  ospfArea: '0'
+- hostname: R2
+  loopbackName: loopback 1
+  loopbackIP: 20.0.0.1 255.255.255.255
+  interfaceName:
+  - 0/0
+  - 1/0
+  interfaceIP:
+  - 192.168.122.3 255.255.255.0
+  - 198.51.101.4 255.255.255.0
+  processID: '2'
+  ospfNetwork:
+  - 20.0.0.1 0.0.0.0
+  - 192.168.122.0 0.0.0.255
+  - 198.51.101.0 0.0.0.255
+  ospfArea: '0'
+- hostname: R3
+  loopbackName: loopback 1
+  loopbackIP: 30.0.0.1 255.255.255.255
+  interfaceName:
+  - 0/0
+  - 1/0
+  interfaceIP:
+  - 192.168.122.4 255.255.255.0
+  - 198.51.102.5 255.255.255.0
+  processID: '3'
+  ospfNetwork:
+  - 30.0.0.1 0.0.0.0
+  - 192.168.122.0 0.0.0.255
+  - 198.51.102.0 0.0.0.255
+  ospfArea: '0'

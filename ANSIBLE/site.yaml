@@ -1,0 +1,5 @@
+- name: Generate router coniguration files
+  hosts: localhost
+
+  roles:
+    - router
