@@ -19,7 +19,7 @@ def createVarPlaybook():
         interfaceNames = []
         loopback = ""
         processID = ""
-        with open('/home/student/Lab11PoCGithub/ANSIBLE/config_requirements.csv', newline='') as file:
+        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
             csvreader = csv.DictReader(file)
             for row in csvreader:
                 interface_name = row['Interface Name']
@@ -54,7 +54,7 @@ def createVarPlaybook():
                 'ospfNetwork': OSPFIPs,
                 'ospfArea': "0",
                 })
-    writeYaml(data, '/home/student/Lab11PoCGithub/ANSIBLE/roles/router/vars/main')
+    writeYaml(data, '/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/roles/router/vars/main')
 
 def getRouterIPs(routers):
     IPs = []
@@ -79,11 +79,11 @@ def sendConfigs():
             'password': 'password',
         }
         with ConnectHandler(**device) as connection:
-            with open("/home/student/Lab11PoCGithub/ANSIBLE/CFGS/"+routers[i]+".txt", 'r') as file:
+            with open("/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/CFGS/"+routers[i]+".txt", 'r') as file:
                 config_commands = file.readlines()
             output = connection.send_config_set(config_commands)
             print(output)
 
 createVarPlaybook()
-getCommand(["ansible-playbook", "/home/student/Lab11PoCGithub/ANSIBLE/site.yaml"])
+getCommand(["ansible-playbook", "/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/site.yaml"])
 sendConfigs()
