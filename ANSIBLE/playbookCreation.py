@@ -54,7 +54,7 @@ def createVarPlaybook():
                 'ospfNetwork': OSPFIPs,
                 'ospfArea': "0",
                 })
-    writeYaml(data, '/home/student/ANSIBLE/roles/router/vars/main')
+    writeYaml(data, '/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/roles/router/vars/main')
 
 def getRouterIPs(routers):
     IPs = []
@@ -79,7 +79,7 @@ def sendConfigs():
             'password': 'password',
         }
         with ConnectHandler(**device) as connection:
-            with open("/home/student/ANSIBLE/CFGS/"+routers[i]+".txt", 'r') as file:
+            with open("/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/CFGS/"+routers[i]+".txt", 'r') as file:
                 config_commands = file.readlines()
             output = connection.send_config_set(config_commands)
             print(output)
