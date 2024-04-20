@@ -59,7 +59,7 @@ def createVarPlaybook():
 def getRouterIPs(routers):
     IPs = []
     for i in routers:
-        with open('config_requirements.csv', newline='') as file:
+        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
             csvreader = csv.DictReader(file)
             for row in csvreader:
                 if i == row['\ufeffHostname'] and row['Interface Type'] != 'Loopback' and row['Interface Name'] == '0/0':
