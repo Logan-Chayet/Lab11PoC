@@ -10,6 +10,31 @@ def writeYaml(data, fileName):
     with open(fileName+".yaml", 'w',) as file:
         yaml.dump(data, file, sort_keys=False)
 
+def determineDevice():
+    with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
+        csvreader = csv.DictReader(file)
+        for row in csvreader:
+            name = row['\ufeffHostname']
+            extracted_word = name.split('-')[0]
+            if extracted_word == "EDGE":
+                return "EDGE"
+            elif extracted_word == "SERVER":
+                return "SERVER"
+            elif extracted_word == "CORE":
+                return "CORE"
+
+def uniqueHostnames():
+    unique = set()
+    unique_list = []
+    with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
+        csvreader = csv.DictReader(file)
+        for row in csvreader:
+            hostname = row['\ufeffHostname']
+            if hostname not in unique:
+                unique.add(hostname)
+                unique_list.append(hostname)
+    return print(unique_list)
+
 def createVarPlaybook():
     data = {'lab7Config': []}
     routers = ['R1','R2','R3']
