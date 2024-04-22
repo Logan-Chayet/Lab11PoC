@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    options { disableConcurrentBuilds() }
     stages {
         stage('Stage 0: Clone Repo') {
             steps {
