@@ -17,7 +17,7 @@ pipeline {
 	stage('Stage 3: Run the Application') {
             steps {
                 echo 'Running..'
-		sh 'python3 /var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/playbookCreation.py'
+		sh 'python3 /home/student/ANSIBLE/playbookCreation.py'
             }
         }
     }

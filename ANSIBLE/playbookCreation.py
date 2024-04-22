@@ -109,6 +109,7 @@ def sendConfigs():
             output = connection.send_config_set(config_commands)
             print(output)
 
+getCommand(["git", "pull"])
 createVarPlaybook()
 getCommand(["ansible-playbook", "/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/site.yaml"])
 sendConfigs()
