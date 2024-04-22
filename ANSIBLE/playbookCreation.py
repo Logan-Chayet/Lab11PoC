@@ -11,7 +11,7 @@ def writeYaml(data, fileName):
         yaml.dump(data, file, sort_keys=False)
 
 def determineDevice():
-    with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
+    with open('/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/config_requirements.csv', newline='') as file:
         csvreader = csv.DictReader(file)
         for row in csvreader:
             name = row['\ufeffHostname']
@@ -26,7 +26,7 @@ def determineDevice():
 def uniqueHostnames():
     unique = set()
     unique_list = []
-    with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
+    with open('/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/config_requirements.csv', newline='') as file:
         csvreader = csv.DictReader(file)
         for row in csvreader:
             hostname = row['\ufeffHostname']
@@ -44,7 +44,7 @@ def createVarPlaybook():
         interfaceNames = []
         loopback = ""
         processID = ""
-        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
+        with open('/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/config_requirements.csv', newline='') as file:
             csvreader = csv.DictReader(file)
             for row in csvreader:
                 interface_name = row['Interface Name']
@@ -79,12 +79,12 @@ def createVarPlaybook():
                 'ospfNetwork': OSPFIPs,
                 'ospfArea': "0",
                 })
-    writeYaml(data, '/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/roles/router/vars/main')
+    writeYaml(data, '/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/roles/router/vars/main')
 
 def getRouterIPs(routers):
     IPs = []
     for i in routers:
-        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
+        with open('/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/config_requirements.csv', newline='') as file:
             csvreader = csv.DictReader(file)
             for row in csvreader:
                 if i == row['\ufeffHostname'] and row['Interface Type'] != 'Loopback' and row['Interface Name'] == '0/0':
@@ -104,12 +104,12 @@ def sendConfigs():
             'password': 'password',
         }
         with ConnectHandler(**device) as connection:
-            with open("/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/CFGS/"+routers[i]+".txt", 'r') as file:
+            with open("/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/CFGS/"+routers[i]+".txt", 'r') as file:
                 config_commands = file.readlines()
             output = connection.send_config_set(config_commands)
             print(output)
 
 getCommand(["git", "pull"])
 createVarPlaybook()
-getCommand(["ansible-playbook", "/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/site.yaml"])
+getCommand(["ansible-playbook", "/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/site.yaml"])
 sendConfigs()
