@@ -12,7 +12,7 @@ def writeYaml(data, fileName):
 
 #To determine which playbook to run when .csv comes in.
 def determineDevice():
-    with open('/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/config_requirements.csv', newline='') as file:
+    with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
         csvreader = csv.DictReader(file)
         for row in csvreader:
             name = row['\ufeffHostname']
@@ -27,7 +27,7 @@ def determineDevice():
 def uniqueHostnames():
     unique = set()
     unique_list = []
-    with open('/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/config_requirements.csv', newline='') as file:
+    with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
         csvreader = csv.DictReader(file)
         for row in csvreader:
             hostname = row['\ufeffHostname']
@@ -53,7 +53,7 @@ def createVarPlaybookEDGE():
         IPv4_mask = ""
         IPv6_network = ""
         ospfv3 = []
-        with open('/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/config_requirements.csv', newline='') as file:
+        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
             csvreader = csv.DictReader(file)
             for row in csvreader:
                 interface_name = row['Interface Name']
@@ -122,7 +122,7 @@ def createVarPlaybookEDGE():
                 'IPv6Network': str(IPv6_network),
                 'ospfv3': ospfv3
                 })
-    writeYaml(data, '/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/roles/edge/vars/main')
+    writeYaml(data, '/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/roles/edge/vars/main')
 
 def createVarPlaybookCORE():
     data = {'coreConfig': []}
@@ -137,7 +137,7 @@ def createVarPlaybookCORE():
         IPv4_mask = ""
         IPv6_network = ""
         ospfv3 = []
-        with open('/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/config_requirements', newline='') as file:
+        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements', newline='') as file:
             csvreader = csv.DictReader(file)
             for row in csvreader:
                 interface_name = row['Interface Name']
@@ -173,7 +173,7 @@ def createVarPlaybookCORE():
                 'ipv6': IPv6_ip,
                 'ospfv3': ospfv3
                 })
-    writeYaml(data, '/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/roles/core/vars/main')
+    writeYaml(data, '/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/roles/core/vars/main')
 
 def createVarPlaybookSERVER():
     data = {'serverConfig': []}
@@ -189,7 +189,7 @@ def createVarPlaybookSERVER():
         IPv6_network = ""
         ospfv3 = []
         description = []
-        with open('/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/config_requirements', newline='') as file:
+        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements', newline='') as file:
             csvreader = csv.DictReader(file)
             for row in csvreader:
                 interface_name = row['Interface Name']
@@ -228,12 +228,12 @@ def createVarPlaybookSERVER():
                 'ospfv3': ospfv3,
                 'description': description
                 })
-    writeYaml(data, '/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/roles/server/vars/main')
+    writeYaml(data, '/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/roles/server/vars/main')
 
 
 
 def sshInfo():
-    csv_file = "/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/sshInfo.csv"
+    csv_file = "/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/sshInfo.csv"
     data = {}
 
     with open(csv_file, "r") as file:
@@ -263,7 +263,7 @@ def sendConfigs():
         for j in hostnames:
             if i == j:
                 with ConnectHandler(**device) as connection:
-                    with open("/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/CFGS/"+i+".txt", 'r') as file:
+                    with open("/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/CFGS/"+i+".txt", 'r') as file:
                         config_commands = file.readlines()
                     output = connection.send_config_set(config_commands)
                     print(output)
@@ -271,11 +271,11 @@ def sendConfigs():
 template = determineDevice()
 if template == "core":
     createVarPlaybookCORE()
-    getCommand(["ansible-playbook", "/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/site.yaml", "--tags", "core"])
+    getCommand(["ansible-playbook", "/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/site.yaml", "--tags", "core"])
 elif template == "edge":
     createVarPlaybookEDGE()
-    getCommand(["ansible-playbook", "/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/site.yaml", "--tags", "edge"])
+    getCommand(["ansible-playbook", "/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/site.yaml", "--tags", "edge"])
 elif template == "server":
     createVarPlaybookSERVER()
-    getCommand(["ansible-playbook", "/var/lib/jenkins/workspace/Lab11PoC@2/ANSIBLE/site.yaml", "--tags", "server"])
+    getCommand(["ansible-playbook", "/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/site.yaml", "--tags", "server"])
 sendConfigs()
