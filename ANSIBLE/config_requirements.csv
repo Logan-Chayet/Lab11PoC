@@ -1,5 +1,2 @@
 Hostname,Interface Type,Interface Name,IPv4 Subnet,Description,IPv6 Subnet,OSPFv1 Enabled,OSPF Process ID,OSPF Area,OSPFv3 Enabled
 SERVER-1-B,FastEthernet,0/0,192.168.20.5/24,switch1:eth3,autoconfig,yes,1,0,yes
-SERVER-2-B,FastEthernet,0/0,192.168.20.6/24,switch2:eth4,autoconfig,yes,1,0,yes
-SERVER-1-DEN,FastEthernet,0/0,192.168.10.5/24,switch4:eth3,autoconfig,yes,1,0,yes
-SERVER-2-DEN,FastEthernet,0/0,192.168.10.6/24,switch3:eth4,autoconfig,yes,1,0,yes
