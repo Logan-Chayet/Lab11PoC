@@ -193,7 +193,7 @@ def createVarPlaybookSERVER():
             csvreader = csv.DictReader(file)
             for row in csvreader:
                 interface_name = row['Interface Name']
-                hostname = row['\ufeffHostname']
+                hostname = row['Hostname']
                 interface_type = row['Interface Type']
                 IP = row['IPv4 Subnet']
                 ospf_enabled = row['OSPFv1 Enabled']
