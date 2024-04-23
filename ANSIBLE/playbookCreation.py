@@ -137,7 +137,7 @@ def createVarPlaybookCORE():
         IPv4_mask = ""
         IPv6_network = ""
         ospfv3 = []
-        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements', newline='') as file:
+        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
             csvreader = csv.DictReader(file)
             for row in csvreader:
                 interface_name = row['Interface Name']
@@ -189,7 +189,7 @@ def createVarPlaybookSERVER():
         IPv6_network = ""
         ospfv3 = []
         description = []
-        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements', newline='') as file:
+        with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
             csvreader = csv.DictReader(file)
             for row in csvreader:
                 interface_name = row['Interface Name']
