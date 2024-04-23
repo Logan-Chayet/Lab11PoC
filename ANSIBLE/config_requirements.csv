@@ -1,7 +1,2 @@
-﻿Hostname,Interface Type,Interface Name,IPv4/Subnet,IPv6/Subnet,OSPFv1 Enabled,OSPF Process ID,OSPF Area,OSPFv3 Enabled,BGPv4 Enabled,remote AS,local AS,BGPv6 Enabled,IPv4 Neighbor,IPv6 Neighbor,Redistribution v4,Redistribution v6
-EDGE-DEN,FastEthernet,0/0,192.168.30.10/30,autoconfig,yes,1,0,yes,no,None,None,no,None,None,no,no
-EDGE-DEN,FastEthernet,1/0,192.168.30.6/30,autoconfig,yes,1,0,yes,no,None,None,no,None,None,no,no
-EDGE-DEN,FastEthernet,6/0,192.168.100.1/30,2001:DB8:5::1/64,no,1,0,no,yes,65001,65000,yes,192.168.100.2,2001:DB8:5:0:C806:59FF:FE1D:A8,yes,yes
-EDGE-BOULDER,FastEthernet,0/0,192.168.60.2/30,autoconfig,yes,1,0,yes,no,None,None,no,None,None,no,no
-EDGE-BOULDER,FastEthernet,1/0,192.168.60.6/30,autoconfig,yes,1,0,yes,no,None,None,no,None,None,no,no
-EDGE-BOULDER,FastEthernet,6/0,192.168.100.2/30,autoconfig,no,1,0,no,yes,65000,65001,yes,192.168.100.1,2001:DB8:5::1,yes,yes
+hostname,Interface Type,Interface Name,IPv4 Subnet,Description,IPv6 subnet,OSPFv1 Enabled,OSPF Process ID,OSPF Area,OSPFv3 Enabled
+SERVER-1-B,FastEthernet,0/0,192.168.20.5/24,switch1:eth3,autoconfig,yes,1,0,yes
