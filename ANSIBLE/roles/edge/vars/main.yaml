@@ -1,0 +1,59 @@
+edgeConfig:
+- hostname: EDGE-DEN
+  interfaceName:
+  - 0/0
+  - 1/0
+  - 6/0
+  interfaceIP:
+  - 192.168.30.10 255.255.255.252
+  - 192.168.30.6 255.255.255.252
+  - 192.168.100.1 255.255.255.252
+  processID: '1'
+  ospfNetwork:
+  - 192.168.30.8 0.0.0.3
+  - 192.168.30.4 0.0.0.3
+  ospfArea: '0'
+  ipv6:
+  - autoconfig
+  - autoconfig
+  - 2001:DB8:5::1/64
+  IPv4Neighbor: 192.168.100.2
+  IPv6Neighbor: 2001:DB8:5:0:C806:59FF:FE1D:A8
+  remote_AS: '65001'
+  local_AS: '65000'
+  IPv4Network: 192.168.100.0
+  IPv4Mask: 255.255.255.252
+  IPv6Network: 2001:db8:5::/64
+  ospfv3:
+  - "ipv6 ospf 1 area 0\n ipv6 enable"
+  - "ipv6 ospf 1 area 0\n ipv6 enable"
+  - ' '
+- hostname: EDGE-BOULDER
+  interfaceName:
+  - 0/0
+  - 1/0
+  - 6/0
+  interfaceIP:
+  - 192.168.60.2 255.255.255.252
+  - 192.168.60.6 255.255.255.252
+  - 192.168.100.2 255.255.255.252
+  processID: '1'
+  ospfNetwork:
+  - 192.168.60.0 0.0.0.3
+  - 192.168.60.4 0.0.0.3
+  ospfArea: '0'
+  ipv6:
+  - autoconfig
+  - autoconfig
+  - autoconfig
+  IPv4Neighbor: 192.168.100.1
+  IPv6Neighbor: 2001:DB8:5::1
+  remote_AS: '65000'
+  local_AS: '65001'
+  IPv4Network: 192.168.100.0
+  IPv4Mask: 255.255.255.252
+  IPv6Network: 2001:db8:5::/64
+  ospfv3:
+  - "ipv6 ospf 1 area 0\n ipv6 enable"
+  - "ipv6 ospf 1 area 0\n ipv6 enable"
+  - ipv6 enable

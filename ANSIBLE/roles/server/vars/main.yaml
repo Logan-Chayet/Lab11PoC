@@ -1,0 +1,61 @@
+serverConfig:
+- hostname: SERVER-1-B
+  interfaceName:
+  - 0/0
+  interfaceIP:
+  - 192.168.20.5 255.255.255.0
+  processID: '1'
+  ospfNetwork:
+  - 192.168.20.0 0.0.0.255
+  ospfArea: '0'
+  ipv6:
+  - autoconfig
+  ospfv3:
+  - ipv6 ospf 1 area 0
+  description:
+  - switch1:eth3
+- hostname: SERVER-2-B
+  interfaceName:
+  - 0/0
+  interfaceIP:
+  - 192.168.20.6 255.255.255.0
+  processID: '1'
+  ospfNetwork:
+  - 192.168.20.0 0.0.0.255
+  ospfArea: '0'
+  ipv6:
+  - autoconfig
+  ospfv3:
+  - ipv6 ospf 1 area 0
+  description:
+  - switch2:eth4
+- hostname: SERVER-1-DEN
+  interfaceName:
+  - 0/0
+  interfaceIP:
+  - 192.168.10.5 255.255.255.0
+  processID: '1'
+  ospfNetwork:
+  - 192.168.10.0 0.0.0.255
+  ospfArea: '0'
+  ipv6:
+  - autoconfig
+  ospfv3:
+  - ipv6 ospf 1 area 0
+  description:
+  - switch4:eth3
+- hostname: SERVER-2-DEN
+  interfaceName:
+  - 0/0
+  interfaceIP:
+  - 192.168.10.6 255.255.255.0
+  processID: '1'
+  ospfNetwork:
+  - 192.168.10.0 0.0.0.255
+  ospfArea: '0'
+  ipv6:
+  - autoconfig
+  ospfv3:
+  - ipv6 ospf 1 area 0
+  description:
+  - switch3:eth4

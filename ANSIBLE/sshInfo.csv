@@ -1,0 +1,11 @@
+Routers,Device_Type,IP,Username,Password
+SERVER-1-B,cisco_ios,192.172.1.3,admin,password
+SERVER-2-B,cisco_ios,192.172.1.4,admin,password
+CORE-1-B,cisco_ios,192.172.1.5,admin,password
+CORE-2-B,cisco_ios,192.172.1.6,admin,password
+EDGE-BOULDER,cisco_ios,192.172.1.7,admin,password
+SERVER-1-DEN,cisco_ios,192.172.2.3,admin,password
+SERVER-2-DEN,cisco_ios,192.172.2.4,admin,password
+CORE-1-DEN,cisco_ios,192.172.2.5,admin,password
+CORE-2-DEN,cisco_ios,192.172.2.6,admin,password
+EDGE-DEN,cisco_ios,192.172.2.7,admin,password

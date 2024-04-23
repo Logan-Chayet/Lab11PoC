@@ -2,4 +2,9 @@
   hosts: localhost
 
   roles:
-    - router
+    - role: edge
+      tags: edge
+    - role: core
+      tags: core
+    - role: server
+      tags: server

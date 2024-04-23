@@ -1,0 +1,41 @@
+ipv6 unicast-routing
+
+hostname {{ item.hostname }}
+
+{% for i in range(item.interfaceIP|length)  %}
+interface FastEthernet{{ item.interfaceName[i] }}
+ no shutdown
+ duplex full
+ ip address {{ item.interfaceIP[i] }}
+ ipv6 address {{ item.ipv6[i] }} 
+ {{ item.ospfv3[i] }}
+
+{% endfor %}
+
+router ospf {{ item.processID }}
+{% for ip in item.ospfNetwork %}
+ network {{ ip }} area {{ item.ospfArea }}
+{% endfor %}
+ redistribute bgp {{ item.local_AS }} subnets
+
+router ospfv3 {{ item.processID }}
+ address-family ipv6 unicast
+  redistribute ND include-connected
+  redistribute bgp {{ item.local_AS }} 
+
+router bgp {{ item.local_AS }}
+ neighbor {{ item.IPv6Neighbor }} remote-as {{ item.remote_AS }}
+ neighbor {{ item.IPv6Neighbor }} ebgp-multihop 2
+ neighbor {{ item.IPv6Neighbor }} update-source FastEthernet6/0
+ neighbor {{ item.IPv4Neighbor }} remote-as {{ item.remote_AS }}
+
+ address-family ipv4
+  network {{ item.IPv4Network }} mask {{ item.IPv4Mask }} 
+  redistribute ospf {{ item.processID }}
+  neighbor {{ item.IPv4Neighbor }} activate
+
+ address-family ipv6
+  redistribute ospf {{ item.processID }}
+  network {{ item.IPv6Network }} 
+  neighbor {{ item.IPv6Neighbor }} activate
+

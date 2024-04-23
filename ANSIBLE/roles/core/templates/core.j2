@@ -1,17 +1,20 @@
+ipv6 unicast-routing
+ipv6 router ospf {{ item.processID }}
+
 hostname {{ item.hostname }}
-!
-interface {{ item.loopbackName }}
- ip address {{ item.loopbackIP }}
-!
+
 {% for i in range(item.interfaceIP|length)  %}
 interface FastEthernet{{ item.interfaceName[i] }}
- ip address {{ item.interfaceIP[i] }}
- duplex full
  no shutdown
-!
+ duplex full
+ ip address {{ item.interfaceIP[i] }}
+ ipv6 address {{ item.ipv6[i] }}
+ ipv6 enable 
+ {{ item.ospfv3[i] }}
+
 {% endfor %}
+
 router ospf {{ item.processID }}
 {% for ip in item.ospfNetwork %}
  network {{ ip }} area {{ item.ospfArea }}
 {% endfor %}
-!

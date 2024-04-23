@@ -1,0 +1,17 @@
+ipv6 unicast-routing
+ipv6 router ospf 1
+
+hostname SERVER-2-DEN
+
+interface FastEthernet0/0
+ no shutdown
+ duplex full
+ ip address 192.168.10.6 255.255.255.0
+ ipv6 address autoconfig
+ ipv6 enable 
+ ipv6 ospf 1 area 0
+ description switch3:eth4
+
+
+router ospf 1
+ network 192.168.10.0 0.0.0.255 area 0
