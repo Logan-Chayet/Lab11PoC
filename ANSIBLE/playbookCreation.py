@@ -87,7 +87,7 @@ def createVarPlaybookEDGE():
                     if ospfv3_enabled == "yes":
                         ospfv3.append("ipv6 ospf "+ospf_process_id+" area "+row['OSPF Area']+"\n "+"ipv6 enable")
                     else:
-                        if row['Hostname'] == "EDGE-BOULDER":
+                        if row['\ufeffHostname'] == "EDGE-BOULDER":
                             ospfv3.append("ipv6 enable")
                         else:
                             ospfv3.append(" ")
