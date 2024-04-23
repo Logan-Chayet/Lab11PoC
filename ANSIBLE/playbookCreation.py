@@ -30,7 +30,7 @@ def uniqueHostnames():
     with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
         csvreader = csv.DictReader(file)
         for row in csvreader:
-            hostname = row['\ufeffHostname']
+            hostname = row['Hostname']
             if hostname not in unique:
                 unique.add(hostname)
                 unique_list.append(hostname)
