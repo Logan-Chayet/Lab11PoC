@@ -1,4 +1,4 @@
-Hostname,Interface Type,Interface Name,IPv4/Subnet,IPv6/Subnet,OSPFv1 Enabled,OSPF Process ID,OSPF Area,OSPFv3 Enabled
+Hostname,Interface Type,Interface Name,IPv4 Subnet,IPv6 Subnet,OSPFv1 Enabled,OSPF Process ID,OSPF Area,OSPFv3 Enabled
 CORE-1-B,FastEthernet,0/0,192.168.60.1/30,2001:DB8:12::1/64,yes,1,0,yes
 CORE-1-B,FastEthernet,1/0,192.168.60.9/30,2001:DB8:11::1/64,yes,1,0,yes
 CORE-1-B,FastEthernet,2/0,192.168.20.1/24,2001:DB8:10::1/64,yes,1,0,yes
