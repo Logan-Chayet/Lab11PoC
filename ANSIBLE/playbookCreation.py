@@ -15,7 +15,7 @@ def determineDevice():
     with open('/var/lib/jenkins/workspace/Lab11PoC/ANSIBLE/config_requirements.csv', newline='') as file:
         csvreader = csv.DictReader(file)
         for row in csvreader:
-            name = row['\ufeffHostname']
+            name = row['Hostname']
             extracted_word = name.split('-')[0]
             if extracted_word == "EDGE":
                 return "edge"
